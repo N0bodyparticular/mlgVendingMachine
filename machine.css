@@ -1,0 +1,15 @@
+.machine-body {
+    display:inline-block;
+    /*float:right;*/
+    color:white;
+    width:400px;
+    height:800px;
+    background: rgb(51, 58, 142);
+    border: 1px solid black;
+    border-radius: 25px;
+}
+
+h3 {
+    size:85px;
+    text-justify:centre;
+}
