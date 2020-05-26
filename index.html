@@ -32,7 +32,7 @@
         </div>
         
         <div class="machine-body">
-            <h3>The MLG Vending Machine</h3>
+            <img src="machine.png">
 
             <div class="machine-items">
                 <ul>
@@ -43,7 +43,7 @@
                         Doritos
                     </li>
                     <li>
-                        Ash's hitbox
+                        Ash's head hitbox
                     </li>
                     <li>
                         AimBot
@@ -51,6 +51,16 @@
                     <li>
                         No Skope
                     </li>
+                    <li>
+                        FaZe Membership
+                    </li>
+                    <li>
+                        Obnoxious Xbox Gamertag
+                    </li>
+                    <li>
+                        24 hour Xbox Live Voucher
+                    </li>
+                    
                 </ul>
             </div>
         </div>
@@ -65,8 +75,49 @@
                 </tr>                
             </table>
 
-            <!-- https://prod.liveshare.vsengsaas.visualstudio.com/join?47379E3ED5A489A1158628B3ABE7B1F16886         -->
+            
         </div>
         <br/><br/>
+
+        <script>
+            let items = [];
+            default_count = 10;
+            let items_table_reset_text = '';
+
+
+            function generate_item(item_cost, item_name, item_id, item_count) {
+                let temp = {};
+                temp.name = item_name;
+                temp.cost = item_cost;
+                temp.id = item_id;
+                temp.count = item_count;
+                return temp; // Generate an item with the values and retrun it so it can be added to the data.
+            }
+
+            function update_items_table() {
+                let items_table = document.getElementById("items-table");
+
+                console.log(items_table.innerHTML);
+
+            }
+            
+
+
+            function init_machine() {
+                items = [ // generate the items in the inventory 
+                    generate_item(2.00, "Mountain Dew", 1, defualt_count),
+                    generate_item(2.00, "Doritos", 2, defualt_count),
+                    generate_item(2.00, "Ash's Head Hitbox", 3, defualt_count),
+                    generate_item(2.00, "AimBot", 4, defualt_count),
+                    generate_item(2.00, "No Skope", 5, defualt_count),
+                    generate_item(2.00, "FaZe Membership", 6, defualt_count),
+                    generate_item(2.00, "Obnoxious Xbox Live Gamertag", 7, defualt_count),
+                    generate_item(2.00, "24 Hour Xbox Live Voucher", 8, defualt_count)
+                ];
+            }
+
+
+            init_machine();
+        </script>
     </body>
 </html>
