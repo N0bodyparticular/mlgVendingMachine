@@ -1,7 +1,7 @@
 <!doctype HTML>
 <html>
     <head>
-        <encoding="UTF-8"></encoding>
+        <meta encoding="UTF-8" />
         <title>The Fully Sick MLG Vending Machine</title>
         <link rel="stylesheet" type="text/css" href="machine.css">
     </head>
@@ -81,39 +81,49 @@
 
         <script>
             let items = [];
-            default_count = 10;
+            let default_count = 10;
             let items_table_reset_text = '';
 
 
             function generate_item(item_cost, item_name, item_id, item_count) {
                 let temp = {};
-                temp.name = item_name;
+                temp.name = '' + item_name;
                 temp.cost = item_cost;
                 temp.id = item_id;
                 temp.count = item_count;
+                console.log(item_name);
                 return temp; // Generate an item with the values and retrun it so it can be added to the data.
             }
 
             function update_items_table() {
                 let items_table = document.getElementById("items-table");
 
-                console.log(items_table.innerHTML);
+                items_table.innerHTML = items_table_reset_text;
+                for (let item_idx = 0; item_idx < items.length; item_idx = item_idx + 1) {
+                    let build_string = "<tr><td>" + items[item_idx].item_name + "</td><td>$" + items[item_idx].cost + "</td><td>" + items[item_idx].count + "</td></tr>";
+                    items_table.innerHTML = items_table.innerHTML + build_string;
+                }  
 
+                console.log("Updated items table html:");
+                console.log(items_table.innerHTML);
             }
             
 
 
             function init_machine() {
-                items = [ // generate the items in the inventory 
-                    generate_item(2.00, "Mountain Dew", 1, defualt_count),
-                    generate_item(2.00, "Doritos", 2, defualt_count),
-                    generate_item(2.00, "Ash's Head Hitbox", 3, defualt_count),
-                    generate_item(2.00, "AimBot", 4, defualt_count),
-                    generate_item(2.00, "No Skope", 5, defualt_count),
-                    generate_item(2.00, "FaZe Membership", 6, defualt_count),
-                    generate_item(2.00, "Obnoxious Xbox Live Gamertag", 7, defualt_count),
-                    generate_item(2.00, "24 Hour Xbox Live Voucher", 8, defualt_count)
-                ];
+                items = []; // generate the items in the inventory 
+                items.push(generate_item(2.50, "Mountain Dew", 1, 10));
+                items.push(generate_item(2.50, "Doritos",                      2, 10));
+                items.push(generate_item(2.50, "Ash's Head Hitbox",            3, 10));
+                items.push(generate_item(2.50, "AimBot",                       4, 10));
+                items.push(generate_item(2.50, "No Skope",                     5, 10));
+                items.push(generate_item(2.50, "FaZe Membership",              6, 10));
+                items.push(generate_item(2.50, "Obnoxious Xbox Live Gamertag", 7, 10));
+                items.push(generate_item(2.50, "24 Hour Xbox Live Voucher",    8, 10));
+                
+
+                items_table_reset_text = document.getElementById("items-table").innerHTML;
+                update_items_table();
             }
 
 
