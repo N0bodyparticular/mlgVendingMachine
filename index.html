@@ -32,9 +32,9 @@
         </div>
         
         <div class="machine-body">
-            <img src="machine.png">
+            
 
-            <div class="machine-items">
+            <div class="machine-items" style="width:631px;height:809px;background-image:url(machine.png)">
                 <ul>
                     <li>
                         Mountain Dew
@@ -83,15 +83,24 @@
             let items = [];
             let default_count = 10;
             let items_table_reset_text = '';
+            let items_name_map = new Map([
+                [1, 'Mountain Dew'],
+                [2, 'Doritos'],
+                [3, 'Ash\'s head hitbox'],
+                [4, 'AimBot'],
+                [5, 'No Skope'],
+                [6, 'FaZe Membership'],
+                [7, 'Obnoxious Xbox Gamertag'],
+                [8, '24 hour Xbox Live Voucher'],
+                [0, 'testingitem']
+            ]);
 
 
-            function generate_item(item_cost, item_name, item_id, item_count) {
+            function generate_item(item_cost, item_id, item_count) {
                 let temp = {};
-                temp.name = '' + item_name;
                 temp.cost = item_cost;
                 temp.id = item_id;
                 temp.count = item_count;
-                console.log(item_name);
                 return temp; // Generate an item with the values and retrun it so it can be added to the data.
             }
 
@@ -100,7 +109,7 @@
 
                 items_table.innerHTML = items_table_reset_text;
                 for (let item_idx = 0; item_idx < items.length; item_idx = item_idx + 1) {
-                    let build_string = "<tr><td>" + items[item_idx].item_name + "</td><td>$" + items[item_idx].cost + "</td><td>" + items[item_idx].count + "</td></tr>";
+                    let build_string = "<tr><td>" + items_name_map.get(items[item_idx].id) + "</td><td>$" + items[item_idx].cost + "</td><td>" + items[item_idx].count + "</td></tr>";
                     items_table.innerHTML = items_table.innerHTML + build_string;
                 }  
 
@@ -112,14 +121,14 @@
 
             function init_machine() {
                 items = []; // generate the items in the inventory 
-                items.push(generate_item(2.50, "Mountain Dew", 1, 10));
-                items.push(generate_item(2.50, "Doritos",                      2, 10));
-                items.push(generate_item(2.50, "Ash's Head Hitbox",            3, 10));
-                items.push(generate_item(2.50, "AimBot",                       4, 10));
-                items.push(generate_item(2.50, "No Skope",                     5, 10));
-                items.push(generate_item(2.50, "FaZe Membership",              6, 10));
-                items.push(generate_item(2.50, "Obnoxious Xbox Live Gamertag", 7, 10));
-                items.push(generate_item(2.50, "24 Hour Xbox Live Voucher",    8, 10));
+                items.push(generate_item(2.50, 1, 10));
+                items.push(generate_item(2.50, 2, 10));
+                items.push(generate_item(2.50, 3, 10));
+                items.push(generate_item(2.50, 4, 10));
+                items.push(generate_item(2.50, 5, 10));
+                items.push(generate_item(2.50, 6, 10));
+                items.push(generate_item(2.50, 7, 10));
+                items.push(generate_item(2.50, 8, 10));
                 
 
                 items_table_reset_text = document.getElementById("items-table").innerHTML;
