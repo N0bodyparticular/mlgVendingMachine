@@ -1,5 +1,3 @@
 Week 7 Term 3
 This week the drag-and-drop part for the vending machine money was worked on. Additionally the layout of the vending machine was improved to allow for elements to be layered on top of the machine's background image.
 
-
-
