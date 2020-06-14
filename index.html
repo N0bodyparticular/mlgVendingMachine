@@ -31,10 +31,8 @@
             </table>
         </div>
         
-        <div class="machine-body">
-            
-
-            <div class="machine-items" style="width:631px;height:809px;background-image:url(machine.png)">
+        <div class="machine-body" style="width:631px;height:809px;background-image:url(machine.png)">
+            <div class="machine-items">
                 <ul>
                     <li>
                         Mountain Dew
@@ -60,9 +58,36 @@
                     <li>
                         24 hour Xbox Live Voucher
                     </li>
-                    
+
                 </ul>
             </div>
+            <div id="item-number-enter">
+                <table border="1">
+                    <tr>
+                        <td><button onclick = "press_button_handle('1');">1</button></td>
+                        <td><button onclick = "press_button_handle('2');">2</button></td>
+                        <td><button onclick = "press_button_handle('3');">3</button></td>
+                    </tr>           
+                    <tr>            
+                        <td><button onclick = "press_button_handle('4');">4</button></td>
+                        <td><button onclick = "press_button_handle('5');">5</button></td>
+                        <td><button onclick = "press_button_handle('6');">6</button></td>
+                    </tr>           
+                    <tr>            
+                        <td><button onclick = "press_button_handle('7');">7</button></td>
+                        <td><button onclick = "press_button_handle('8');">8</button></td>
+                        <td><button onclick = "press_button_handle('9');">9</button></td>
+                    </tr>           
+                    <tr>            
+                        <td><button onclick = "press_button_handle('#');">#</button></td>
+                        <td><button onclick = "press_button_handle('0');">0</button></td>
+                        <td><button onclick = "press_button_handle('*');">*</button></td>
+                    </tr>
+
+
+                </table>
+            </div>
+
         </div>
 
         <div id="admin-hidden">
@@ -74,6 +99,7 @@
                     <td>Count Remaining</td>
                 </tr>                
             </table>
+            <button onclick="update_items_table();">Update</button>
 
             
         </div>
@@ -117,8 +143,6 @@
                 console.log(items_table.innerHTML);
             }
             
-
-
             function init_machine() {
                 items = []; // generate the items in the inventory 
                 items.push(generate_item(2.50, 1, 10));
@@ -133,6 +157,47 @@
 
                 items_table_reset_text = document.getElementById("items-table").innerHTML;
                 update_items_table();
+            }
+
+            function press_button_handle(key) {
+                console.log(key + " was pressed.");
+                switch (key) {
+                    case '1':
+                        break;
+
+                    case '2':
+                        break;
+
+                    case '3':
+                        break;
+
+                    case '4':
+                        break;
+
+                    case '5':
+                        break;
+
+                    case '6':
+                        break;
+
+                    case '7':
+                        break;
+
+                    case '8':
+                        break;
+
+                    case '9':
+                        break;
+
+                    case '#':
+                        break;
+
+                    case '0':
+                        break;
+
+                    case '*':
+                        break;
+                }
             }
 
 
