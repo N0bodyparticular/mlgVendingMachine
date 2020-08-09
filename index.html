@@ -13,79 +13,79 @@
             <!-- Ryan work here now-->
             <table>
                 <tr>
-                    <td> $10</td>
-                    <td> $5</td>
+                    <td>$10</td>
+                    <td>$5</td>
                 </tr>
                 <tr>
-                    <td> $2</td>
-                    <td> $1</td>
+                    <td>$2</td>
+                    <td>$1</td>
                 </tr>
                 <tr>
-                    <td> 50c</td>
-                    <td> 20c</td>
+                    <td>50c</td>
+                    <td>20c</td>
                 </tr>
                 <tr>
-                    <td> 10c</td>
-                    <td> 5c</td>
+                    <td>10c</td>
+                    <td>5c</td>
                 </tr>
             </table>
         </div>
         
-        <div class="machine-body" style="width:631px;height:809px;background-image:url(machine.png)">
+        <div class="machine-body" style="width:631px;height:809px;"><!--background-image:url(machine.png)"> remove dat stuff-->
             <div class="machine-items">
                 <ul>
                     <li>
-                        Mountain Dew
+                        Mountain Dew <span id="item-1">[420][$2.50]</span>
                     </li>
                     <li>
-                        Doritos
+                        Doritos <span id="item-2">[696][$1.20]</span>
                     </li>
                     <li>
-                        Ash's head hitbox
+                        Ash's head hitbox <span id="item-3">[001][$50.00]</span>
                     </li>
                     <li>
-                        AimBot
+                        AimBot <span id="item-4">[760][$15.00]</span>
                     </li>
                     <li>
-                        No Skope
+                        No Skope <span id="item-5">[360][$36.00]</span>
                     </li>
                     <li>
-                        FaZe Membership
+                        FaZe Membership <span id="item-6">[720][$10.00]</span>
                     </li>
                     <li>
-                        Obnoxious Xbox Gamertag
+                        Obnoxious Xbox Gamertag <span id="item-7">[785][$18.00]</span>
                     </li>
                     <li>
-                        24 hour Xbox Live Voucher
+                        24 hour Xbox Live Voucher <span id="item-8">[xbox code][xbox price]</span>
                     </li>
 
                 </ul>
             </div>
             <div id="item-number-enter">
+
                 <table border="1">
                     <tr>
-                        <td><button onclick = "press_button_handle('1');">1</button></td>
-                        <td><button onclick = "press_button_handle('2');">2</button></td>
-                        <td><button onclick = "press_button_handle('3');">3</button></td>
-                    </tr>           
-                    <tr>            
-                        <td><button onclick = "press_button_handle('4');">4</button></td>
-                        <td><button onclick = "press_button_handle('5');">5</button></td>
-                        <td><button onclick = "press_button_handle('6');">6</button></td>
-                    </tr>           
-                    <tr>            
-                        <td><button onclick = "press_button_handle('7');">7</button></td>
-                        <td><button onclick = "press_button_handle('8');">8</button></td>
-                        <td><button onclick = "press_button_handle('9');">9</button></td>
-                    </tr>           
-                    <tr>            
-                        <td><button onclick = "press_button_handle('#');">#</button></td>
-                        <td><button onclick = "press_button_handle('0');">0</button></td>
-                        <td><button onclick = "press_button_handle('*');">*</button></td>
+                        <td><button onclick="javascript:press_button_handle('1');">1</button></td>
+                        <td><button onclick="javascript:press_button_handle('2');">2</button></td>
+                        <td><button onclick="javascript:press_button_handle('3');">3</button></td>
                     </tr>
-
-
+                    <tr>
+                        <td><button onclick="javascript:press_button_handle('4');">4</button></td>
+                        <td><button onclick="javascript:press_button_handle('5');">5</button></td>
+                        <td><button onclick="javascript:press_button_handle('6');">6</button></td>
+                    </tr>
+                    <tr>
+                        <td><button onclick="javascript:press_button_handle('7');">7</button></td>
+                        <td><button onclick="javascript:press_button_handle('8');">8</button></td>
+                        <td><button onclick="javascript:press_button_handle('9');">9</button></td>
+                    </tr>
+                    <tr>
+                        <td><button onclick="javascript:press_button_handle('#');">&larr;</button></td>
+                        <td><button onclick="javascript:press_button_handle('0');">0</button></td>
+                        <td><button onclick="javascript:press_button_handle('*');">&#6828;</button></td>
+                    </tr>
                 </table>
+                <span id="codeDisplay">[placeholder]</span>
             </div>
 
         </div>
@@ -101,7 +101,15 @@
             </table>
             <button onclick="update_items_table();">Update</button>
 
-            
+            <div>
+                <p>Enter an item number in the keypad, then use the controls here to change stock number.</p>
+                <span id="restockName">[restock item name]</span><input type="number" min="0" max="15" id="stockCountChange" /><br />
+            </div>
+
+            <div>
+                <p>Force change user money amount</p>
+                <input id="force-money" type="number" min="0" max="1000" /><button onclick="javascript:setCurrentMoney(document.getElementById('force-money')">Update</button><br />
+            </div>            
         </div>
         <br/><br/>
 
@@ -110,16 +118,78 @@
             let default_count = 10;
             let items_table_reset_text = '';
             let items_name_map = new Map([
-                [1, 'Mountain Dew'],
-                [2, 'Doritos'],
-                [3, 'Ash\'s head hitbox'],
-                [4, 'AimBot'],
-                [5, 'No Skope'],
-                [6, 'FaZe Membership'],
-                [7, 'Obnoxious Xbox Gamertag'],
-                [8, '24 hour Xbox Live Voucher'],
-                [0, 'testingitem']
+                [420, 'Mountain Dew'],
+                [696, 'Doritos'],
+                [001, 'Ash\'s head hitbox'],
+                [760, 'AimBot'],
+                [360, 'No Skope'],
+                [720, 'FaZe Membership'],
+                [785, 'Obnoxious Xbox Gamertag'],
+                [666, '24 hour Xbox Live Voucher'],
+                [000, 'testingitem']
             ]);
+            let currentCode = '';
+
+            function getCurrentMoney() {
+                console.log("Warning! getCurrentMoney is still under construction.");
+                return 999;
+            }
+
+            function setCurrentMoney(newMoney) {
+                console.log("Warning! setCurrentMoney isn't implemented.");
+            }
+
+            function getItemEntryFromList(code) {
+                let val = null;
+                console.log(parseInt(code));
+                for (let j = 0; j < items.length; j++) { // Find the item.
+                    console.log(items[j]);
+                    if (items[j].id == parseInt(code)) {
+                        item = items[j];
+                    }
+                }
+                return val;
+            }
+
+            function getItemFromCode(code) {
+                // Handle getting item from machine with this function.
+                if (code.length > 3) { // Check if code is too long
+                    console.log("Error: item code was too long!");
+                    return null;
+                }
+                if (code.length < 3) { // Check if code is too short.
+                    console.log("Error: item code was too short!");
+                    return null;
+                }
+                console.log("Checkout item #" + code);
+
+                let item = getItemEntryFromList(code);
+
+                // Check if item purchace is valid/allowed
+                if (item == null) { // Check if item can be found.
+                    console.log("Error: Failed to find item #" + code);
+                    return null;
+                }
+
+                if (item.count <= 0) { // Check if there are some left.
+                    console.log("No items remaining.");
+                    return null;
+                }
+
+                if (getCurrentMoney() < item.cost) { // Check if user has enough money.
+                    console.log("Not enough money. Add more.");
+                    return null;
+                }
+
+                setCurrentMoney(getCurrentMoney() - item.cost); // Decrement user's money in the machine by the cost of the item.
+                item.count--;
+                
+                console.log("Selected: " + items_name_map.get(parseInt(code)));
+                console.log("User now owns item.");
+                
+
+                return items_name_map.get(parseInt(code));
+            }
 
 
             function generate_item(item_cost, item_id, item_count) {
@@ -145,15 +215,14 @@
             
             function init_machine() {
                 items = []; // generate the items in the inventory 
-                items.push(generate_item(2.50, 1, 10));
-                items.push(generate_item(2.50, 2, 10));
-                items.push(generate_item(2.50, 3, 10));
-                items.push(generate_item(2.50, 4, 10));
-                items.push(generate_item(2.50, 5, 10));
-                items.push(generate_item(2.50, 6, 10));
-                items.push(generate_item(2.50, 7, 10));
-                items.push(generate_item(2.50, 8, 10));
-                
+                items.push(generate_item(2.50, 420, 10));
+                items.push(generate_item(1.20, 696, 10));
+                items.push(generate_item(50.00, 001, 10));
+                items.push(generate_item(15.00, 760, 10));
+                items.push(generate_item(36.00, 360, 10));
+                items.push(generate_item(10.00, 720, 10));
+                items.push(generate_item(18.00, 785, 10));
+                items.push(generate_item(3.00, 666, 10));               
 
                 items_table_reset_text = document.getElementById("items-table").innerHTML;
                 update_items_table();
@@ -163,41 +232,55 @@
                 console.log(key + " was pressed.");
                 switch (key) {
                     case '1':
+                        currentCode += "1";
                         break;
 
                     case '2':
+                        currentCode += "2";
                         break;
 
                     case '3':
+                        currentCode += "3";
                         break;
 
                     case '4':
+                        currentCode += "4";
                         break;
 
                     case '5':
+                        currentCode += "5";
                         break;
 
                     case '6':
+                        currentCode += "6";
                         break;
 
                     case '7':
+                        currentCode += "7";
                         break;
 
                     case '8':
+                        currentCode += "8";
                         break;
 
                     case '9':
+                        currentCode += "9";
                         break;
 
                     case '#':
+                        currentCode = "";
                         break;
 
                     case '0':
+                        currentCode += "0";
                         break;
 
                     case '*':
+                        getItemFromCode(currentCode);
                         break;
                 }
+
+                document.getElementById("codeDisplay").innerText = currentCode; // update the code display
             }
 
 

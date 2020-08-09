@@ -1,0 +1,272 @@
+<style>
+    #money_1,#money_2, #money_20, #money_50{
+        width: 50px;
+        height: 50px;
+        margin: 0px;
+        padding: 0px;
+        border: 0px;
+    }
+	
+	#money_5{
+		margin: 0px;
+        padding: 0px;
+        border: 0px;
+		width: 150px;
+        height: 75px;
+	}
+
+
+    #div2 {
+        width: 300px;
+        height: 150px;
+        border: 1px solid black;
+        background-color: black;
+
+    }
+    
+	
+	.money-container{
+		width: 80%;
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		background-color: brown;
+		padding: 10px;
+		
+	}
+</style>
+<script>
+    let items = [];
+    let cost = 0;
+    let moneyin = 0;
+    let change = 0;
+    let hold = 0;
+    let wallet = 43;
+
+
+
+    function money_update() {
+        document.getElementById("moneyinside").innerHTML = moneyin;
+        if (wallet < 5) {
+            document.getElementById("money_5").style.visibility = "hidden";
+            if (wallet < 2) {
+                document.getElementById("money_2").style.visibility = "hidden";
+                if (wallet < 1) {
+                    document.getElementById("money_1").style.visibility = "hidden";
+                    if (wallet < 0.5) {
+                        document.getElementById("money_50").style.visibility = "hidden";
+                        if (wallet < 0.2) {
+                            document.getElementById("money_20").style.visibility = "hidden";
+                        }
+                    }
+                }
+
+            }
+        }
+        else{
+                document.getElementById("money_5").style.visibility = "visible";
+                document.getElementById("money_2").style.visibility = "visible";
+                document.getElementById("money_1").style.visibility = "visible";
+                document.getElementById("money_50").style.visibility = "visible";
+                document.getElementById("money_20").style.visibility = "visible";
+            }
+    }
+
+
+
+    function cart_update() {
+        document.getElementById("itemsinside").innerHTML = items;
+    }
+
+
+    function clicked(key){
+        if (key == 1){
+            items.push("Ash Head Hitbox");
+            cost += 3;
+            cart_update()
+        }
+        if (key == 2){
+            items.push("FaZe Membership");
+            cost += 3;
+            cart_update()
+        }
+        if (key == 3){
+            items.push("2 Hour Xbox Live Voucher");
+            cost += 3;
+            cart_update()
+        }
+        if (key == 4){
+            items.push("Mountain Dew");
+            cost += 3;
+            cart_update()
+        }
+        if (key == 5){
+            items.push("360 nO sKoPe");
+            cost += 3;
+            cart_update()
+        }
+        if (key == 6){
+            items.push("Jager ACOG");
+            cost += 3;
+            cart_update()
+        }
+        if (key == 7){
+            items.push("Doritos");
+            cost += 3;
+            cart_update()
+        }
+        if (key == 8){
+            items.push("Gamer Chair");
+            cost += 3;
+            cart_update()
+        }
+        if (key == "clear"){
+            items = [];
+            cost = 0;
+            cart_update()
+
+
+
+
+        }
+
+
+    }
+
+    function money(put){
+        if (put == "pay"){
+
+            if (items.length==0){
+                alert("No items were selected and you were refunded $"+ moneyin);
+                wallet += moneyin;
+                moneyin = 0;
+                money_update()
+
+            }
+            else {
+                if (moneyin >= cost){
+                    if (moneyin - cost == 0){
+                        alert("You recieved " + items + " with zero change");
+                        wallet += change;
+                        moneyin = 0;
+                        items = [];
+                        cost = 0;
+                        money_update()
+                        cart_update()
+                    }
+                    if (moneyin - cost != 0){
+                        change = moneyin - cost;
+                        wallet += change;
+                        change  = parseFloat(change.toFixed(2))
+                        alert("You recieved " + items + " with "+ change +" change");
+                        moneyin = 0;
+                        items = [];
+                        cost = 0;
+                        money_update()
+                        cart_update()
+                    }
+                }
+                if (moneyin < cost){
+                    change = cost - moneyin;
+                    change  = parseFloat(change.toFixed(2))
+                    alert("You need "+ change +" more money");
+                }
+            }
+        }
+
+
+
+
+    }
+
+
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function drag(ev, mon) {
+        if (mon != "text"){
+        hold = mon;}
+        else{
+            hold = 0;
+        }
+
+    }
+
+    function drop_slot(ev) {
+        ev.preventDefault();
+        moneyin += hold;
+        wallet -= hold;
+        moneyin  = parseFloat(moneyin.toFixed(2));
+        money_update()
+
+
+    }
+
+    
+</script>
+
+
+<html>
+<head>
+    <title> MLG Vending Machine</title>
+</head>
+<body>
+
+    <b ondragstart="drag(event,'text')">Keypad:</b>
+    <table bgcolor = #000000>
+        <tr>
+            <td>
+                <input type=button onClick="clicked(1)"  value="1">
+            <td>
+                <input type=button onClick="clicked(2)" value="2">
+        </tr>
+        <tr>
+            <td>
+                <input type=button onClick="clicked(3)" value="3">
+            <td>
+                <input type=button onClick="clicked(4)" value="4">
+        </tr>
+        <tr>
+            <td>
+                <input type=button onClick="clicked(5)" value="5">
+            <td>
+                <input type=button onClick="clicked(6)" value="6">
+        </tr>
+        <tr>
+            <td>
+                <input type=button onClick="clicked(7)" value="7">
+            <td>
+                <input type=button onClick="clicked(8)" value="8">
+            </td>
+    </table>
+    <br>
+    <input type=button onClick="clicked('clear')" value="Clear Cart">
+
+    <br>
+    <input type=button onClick="money('pay')" value="Pay">
+    <br>
+    <p ondragstart="drag(event,'text')">Money In: <p id="moneyinside" ondragstart="drag(event,'text')">0</p>
+    <br>
+
+
+
+    <div id="div2" ondrop="drop_slot(event)" ondragover="allowDrop(event)"></div>
+   <br>
+   <div class="money-container">
+        <img src="5.jpg" id="money_5" ondrop="drop(event)" draggable="true" ondragstart="drag(event, 5)" id="drag5">
+
+        <img src="2.png" id="money_2" ondrop="drop(event)" draggable="true" ondragstart="drag(event, 2)" id="drag2">
+
+        <img src="1.png" id="money_1" ondrop="drop(event)" draggable="true" ondragstart="drag(event, 1)" id="drag1">
+
+        <img src="50c.png" id="money_50" ondrop="drop(event)" draggable="true" ondragstart="drag(event, 0.5)" id="drag50">
+
+        <img src="20c.png" id="money_20" ondrop="drop(event)" draggable="true" ondragstart="drag(event, 0.2)" id="drag20">
+
+	</div>
+    <br>
+    <br>
+    <p ondragstart="drag(event,'text')" >Cart: <p id="itemsinside" draggable="false" ondragstart="drag(event,'text')">Empty</p>
+</body>
+</html>
