@@ -10,6 +10,18 @@
 }
 
 h3 {
-    size:85px;
-    text-justify:centre;
+    font-size:85px;
+}
+
+.machine-items {
+    position:relative;
+    display:flex;
+    margin-left:10px;
+    top:10px;
+}
+
+.item-number-enter {
+    position: relative;
+    display: flex;
+    right:50px;
 }
