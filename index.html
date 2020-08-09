@@ -109,7 +109,7 @@
                     <tr>
                         <td><button onclick="javascript:press_button_handle('#');">&larr;</button></td>
                         <td><button onclick="javascript:press_button_handle('0');">0</button></td>
-                        <td><button onclick="javascript:press_button_handle('*');">&#6828;</button></td>
+                        <td><button onclick="javascript:press_button_handle('*');">#</button></td>
                     </tr>
                 </table>
                 <span id="codeDisplay">[placeholder]</span>
@@ -135,15 +135,15 @@
 
             <div>
                 <p>Force change user money amount</p>
-                <input id="force-money" type="number" min="0" max="1000" /><button onclick="javascript:setCurrentMoney(document.getElementById('force-money')">Update</button><br />
+                <input id="force-money" type="number" min="0" max="1000" /><button onclick="javascript: setCurrentMoney(document.getElementById('force-money'));">Update</button><br />
             </div>            
         </div>
         <br/><br/>
 
         <script>
-            let items = [];
-            let default_count = 10;
-            let items_table_reset_text = '';
+            let items = []; // stores the items in the machine, it's populated later.
+            let default_count = 10; // Default count per item in machine. Unused. TODO: Remove.
+            let items_table_reset_text = ''; // Text to fill the item table with. Generated procedually later on.
             let items_name_map = new Map([
                 [420, 'Mountain Dew'],
                 [696, 'Doritos'],
@@ -154,13 +154,13 @@
                 [785, 'Obnoxious Xbox Gamertag'],
                 [666, '24 hour Xbox Live Voucher'],
                 [000, 'testingitem']
-            ]);
-            let currentCode = '';
+            ]); // Stores the items' names and codes for a mapping to text display names.
+            let currentCode = ''; // Currently entered code in machine.
 
             function getCurrentMoney() {
                 console.log("Warning! getCurrentMoney is still under construction.");
                 return 999;
-            }
+            }// Gets current amount of money in the machine.
 
             function setCurrentMoney(newMoney) {
                 console.log("Warning! setCurrentMoney isn't implemented.");
