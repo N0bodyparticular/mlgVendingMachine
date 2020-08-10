@@ -1,0 +1,95 @@
+
+
+
+<html>
+<head>
+    <!--Title of site along with the link and script tags to connect the css and js-->
+    <title> MLG Vending Machine</title>
+    <link rel="stylesheet" href="Vending-Machine-Styling.css" />
+    <script src="Vending-Machine-JS.js"></script>
+</head>
+<body>
+    <!--The container used to wrap the whole machine-->
+    <div class="machine-container">
+        <!--The left hand side of the vending machine itself which contains the products-->
+        <div class="vending-machine"></div>
+        <!--The right hand side of the machine that contains the mouney counter, keypad, money slot, wallet, money and lock-->
+        <div class="side-panel">
+            <!--The money counter itself which conatins the words money in along with a p tag which changes based on javascript-->
+            <div class="money-counter">
+                <p ondragstart="drag(event,'text')" id="moneyin">Money In: <p id="moneyinside" ondragstart="drag(event,'text')">0</p>
+            </div>
+            <div>
+                <!--The table used to create the keypad which has each button with an onclick function with passes one parameter which is equal to the value of the button itself-->
+                <table class="keypad">
+                    <tr>
+                        <td>
+                            <input type=button onClick="clicked(1)" value="1" style="font-size:30px">
+                        <td>
+                            <input type=button onClick="clicked(2)" value="2" style="font-size:30px">
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type=button onClick="clicked(3)" value="3" style="font-size:30px">
+                        <td>
+                            <input type=button onClick="clicked(4)" value="4" style="font-size:30px">
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type=button onClick="clicked(5)" value="5" style="font-size:30px">
+                        <td>
+                            <input type=button onClick="clicked(6)" value="6" style="font-size:30px">
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type=button onClick="clicked(7)" value="7" style="font-size:30px">
+                        <td>
+                            <input type=button onClick="clicked(8)" value="8" style="font-size:30px">
+                        </td>
+                </table>
+                <br>
+                <!--The remaining buttons used in purchasing one empties the cart and the other checks to see if the purchase is valiad with js and corresponds a response with the outcome-->
+                <div class="extra-buttons">
+                    <input type=button onClick="clicked('clear')" value="Clear Cart" style="font-size:20px">
+
+
+                    <input type=button onClick="money('pay')" value="Pay" style="font-size:20px">
+                </div>
+            </div>
+
+
+            <!--This is the div that is used as a drop box which allows things to be placed into and will run a function based on drop or dragover-->
+            <div>
+                <div id="div2" ondrop="drop_slot(event)" ondragover="allowDrop(event)"></div>
+                <br>
+                <!--The wallet itself which has one function when clicked to zoom it in-->
+                <div class="money-container" id="money-container" onclick="transition()">
+                    <!--Each item of money has the same on drop function but also has another function that also takes in the value of the money being moved to keep track of how much money is being moved-->
+                    <img src="5.jpg" id="money_5" ondrop="drop(event)" draggable="true" ondragstart="drag(event, 5)">
+
+                    <img src="2.png" id="money_2" ondrop="drop(event)" draggable="true" ondragstart="drag(event, 2)">
+
+                    <img src="1.png" id="money_1" ondrop="drop(event)" draggable="true" ondragstart="drag(event, 1)">
+
+                    <img src="50c.png" id="money_50" ondrop="drop(event)" draggable="true" ondragstart="drag(event, 0.5)">
+
+                    <img src="20c.png" id="money_20" ondrop="drop(event)" draggable="true" ondragstart="drag(event, 0.2)">
+                </div>
+            </div>
+            <!--The lock with a function to request a password and if the input is the same as the set password it will change the hidden admin menu-->
+            <img src="lock.jpg" class="admin" onclick="unlock()">
+        </div>
+        <!--The admin menu itself and everything it contains-->
+        <div class="admin-ui" id="admin-ui">
+            <!--The x to close the menu with the lock function-->
+            <img class="close-admin" src="x.png" onclick="lock()">
+            <!--All of the items within the admin menu itself including the name of the option and the buttons and value correlating with it, and it also includes all of the containers for specific positioning-->
+            <h1 ondragstart="drag(event,'text')">Auto Restock</h1><h1 ondragstart="drag(event,'text')">Ash Hitbox Restock</h1> <div class="ui-info-container" id="ui-info-container-1"><div class="admin-button-container"><input type=button onClick="" class="admin-button" value="+" style="font-size:3vh"><input type=button onClick="" class="admin-button" value="-" style="font-size:3vh"></div><p ondragstart="drag(event,'text')">10</p></div><h1 ondragstart="drag(event,'text')">Mountain Dew Restock</h1> <div class="ui-info-container" id="ui-info-container-1"><div class="admin-button-container"><input type=button onClick="" class="admin-button" value="+" style="font-size:3vh"><input type=button onClick="" class="admin-button" value="-" style="font-size:3vh"></div><p ondragstart="drag(event,'text')">10</p></div></h1><h1 ondragstart="drag(event,'text')">360 nO sKoPe Restock</h1> <div class="ui-info-container" id="ui-info-container-1"><div class="admin-button-container"><input type=button onClick="" class="admin-button" value="+" style="font-size:3vh"><input type=button onClick="" class="admin-button" value="-" style="font-size:3vh"></div><p ondragstart="drag(event,'text')">10</p></div></h1><h1 ondragstart="drag(event,'text')">Xbox Live Restock</h1> <div class="ui-info-container" id="ui-info-container-1"><div class="admin-button-container"><input type=button onClick="" class="admin-button" value="+" style="font-size:3vh"><input type=button onClick="" class="admin-button" value="-" style="font-size:3vh"></div><p ondragstart="drag(event,'text')">10</p></div><h1 ondragstart="drag(event,'text')">Gamer Chair Restock</h1> <div class="ui-info-container" id="ui-info-container-1"><div class="admin-button-container"><input type=button onClick="" class="admin-button" value="+" style="font-size:3vh"><input type=button onClick="" class="admin-button" value="-" style="font-size:3vh"></div><p ondragstart="drag(event,'text')">10</p></div><h1 ondragstart="drag(event,'text')">Doritos Restock</h1> <div class="ui-info-container" id="ui-info-container-1"><div class="admin-button-container"><input type=button onClick="" class="admin-button" value="+" style="font-size:3vh"><input type=button onClick="" class="admin-button" value="-" style="font-size:3vh"></div><p ondragstart="drag(event,'text')">10</p></div>
+        </div>
+    </div>
+
+    <!--NEED TO REMOVE AND REPLACE-->
+        <p ondragstart="drag(event,'text')" >Cart: <p id="itemsinside" draggable="false" ondragstart="drag(event,'text')">Empty</p>
+
+    </body>
+    </html>
