@@ -13,15 +13,15 @@ let items_name_map = new Map([
 ]); // Stores the items' names and codes for a mapping to text display names.
 let currentCode = ''; // Currently entered code in machine.
 let wallet = 12;
+let currentMachineMoney = 1;
 
 function getCurrentMoney() {
-    console.log("Warning! getCurrentMoney is still under construction.");
-    return 999;
+    return currentMachineMoney;
 }// Gets current amount of money in the machine.
 
 function setCurrentMoney(newMoney) {
-    console.log("Warning! setCurrentMoney isn't implemented.");
-}
+    currentMachineMoney = newMoney;
+} // Sets the amount of money in the machine.
 
 function getItemEntryFromList(code) {
     let val = null;
@@ -171,10 +171,7 @@ function press_button_handle(key) {
 init_machine(); // Setup everything.
 
 
-
-
 //Makes it so that if you do not have enough funds it will hide the money you cannot spend else it will show them
-
 function money_update() {
     //document.getElementById("moneyinside").innerHTML = moneyin;
     if (wallet < 5) {
@@ -202,21 +199,12 @@ function money_update() {
     }
 }
 
-//When the function is run it changes the div to have the same value of items[]
-
-function cart_update() {
-    document.getElementById("itemsinside").innerHTML = items;
-}
-
-
 //Allows for dragging
-
 function allowDrop(ev) {
     ev.preventDefault();
 }
 
 //Checks if the element being moved is text and if it is the value is 0
-
 function drag(ev, mon) {
     if (mon != "text") {
         hold = mon;
@@ -228,25 +216,20 @@ function drag(ev, mon) {
 }
 
 //Adds the value of the money being dropped into the slot
-
 function drop_slot(ev) {
     ev.preventDefault();
     moneyin += hold;
     wallet -= hold;
-    moneyin = parseFloat(''+moneyin);
-    money_update()
-
-
+    money_update();
+    setCurrentMoney(getCurrentMoney() + parseFloat(hold.toFixed(2))); // Increase money amount.
 }
 
 //Toggles the class switch on the wallet to make it change size
-
 function transition() {
     document.getElementById("money-container").classList.toggle("switch");
 }
 
 //Requests a password for the admin menu
-
 function unlock() {
     password = prompt("Insert password: ");
     //If the prompt is empty when submitted or if you cancel it doesn't alert the user anything
@@ -254,13 +237,13 @@ function unlock() {
         return;
     }
     //For failed attempts
-    if (password != "password") {
-        alert("OI!");
-    }
+    
     //If sucessful changes the admin menu's class to make it visible
-    if (password == "password") {
-        alert("Welcome");
+    if (Sha256.hash(password) == "b9c506adc8d5313abb3f2ba29e5d471685784ec74b628f5855743c3c2ed9f01e") {
+        //alert("Welcome");
         document.getElementById("admin-ui").classList.toggle("admin-display");
+    } else {
+        alert("OI! Wrong password!");
     }
 
 }

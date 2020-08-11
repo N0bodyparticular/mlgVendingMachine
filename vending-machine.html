@@ -1,7 +1,9 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <!--Title of site along with the link and script tags to connect the css and js-->
     <title> MLG Vending Machine</title>
+    <meta charset="UTF-8" />
     <link rel="stylesheet" href="Vending-Machine-Styling.css" />
     <script type="text/javascript" src="crypto.js"></script>
     <script type="text/javascript" src="Vending-Machine-JS.js"></script>
@@ -40,8 +42,15 @@
         <!--The x to close the menu with the lock function-->
         <img class="close-admin" src="x.png" onclick="lock()">
         <!--All of the items within the admin menu itself including the name of the option and the buttons and value correlating with it, and it also includes all of the containers for specific positioning-->
-        <h1 ondragstart="drag(event,'text')">Auto Restock</h1><h1 ondragstart="drag(event,'text')">Ash Hitbox Restock</h1> <div class="ui-info-container" id="ui-info-container-1"><div class="admin-button-container"><input type=button onClick="" class="admin-button" value="+" style="font-size:3vh"><input type=button onClick="" class="admin-button" value="-" style="font-size:3vh"></div><p ondragstart="drag(event,'text')">10</p></div><h1 ondragstart="drag(event,'text')">Mountain Dew Restock</h1> <div class="ui-info-container" id="ui-info-container-1"><div class="admin-button-container"><input type=button onClick="" class="admin-button" value="+" style="font-size:3vh"><input type=button onClick="" class="admin-button" value="-" style="font-size:3vh"></div><p ondragstart="drag(event,'text')">10</p></div></h1><h1 ondragstart="drag(event,'text')">360 nO sKoPe Restock</h1> <div class="ui-info-container" id="ui-info-container-1"><div class="admin-button-container"><input type=button onClick="" class="admin-button" value="+" style="font-size:3vh"><input type=button onClick="" class="admin-button" value="-" style="font-size:3vh"></div><p ondragstart="drag(event,'text')">10</p></div></h1><h1 ondragstart="drag(event,'text')">Xbox Live Restock</h1> <div class="ui-info-container" id="ui-info-container-1"><div class="admin-button-container"><input type=button onClick="" class="admin-button" value="+" style="font-size:3vh"><input type=button onClick="" class="admin-button" value="-" style="font-size:3vh"></div><p ondragstart="drag(event,'text')">10</p></div><h1 ondragstart="drag(event,'text')">Gamer Chair Restock</h1> <div class="ui-info-container" id="ui-info-container-1"><div class="admin-button-container"><input type=button onClick="" class="admin-button" value="+" style="font-size:3vh"><input type=button onClick="" class="admin-button" value="-" style="font-size:3vh"></div><p ondragstart="drag(event,'text')">10</p></div><h1 ondragstart="drag(event,'text')">Doritos Restock</h1> <div class="ui-info-container" id="ui-info-container-1"><div class="admin-button-container"><input type=button onClick="" class="admin-button" value="+" style="font-size:3vh"><input type=button onClick="" class="admin-button" value="-" style="font-size:3vh"></div><p ondragstart="drag(event,'text')">10</p></div>
-    </div>
+        <h1 ondragstart="drag(event,'text')">Auto Restock</h1>
+        <h1 ondragstart="drag(event,'text')">Ash Hitbox Restock</h1>
+        <div class="ui-info-container" id="ui-info-container-1">
+            <div class="admin-button-container">
+                <input type=button onClick="" class="admin-button" value="+" style="font-size:3vh">
+                <input type=button onClick="" class="admin-button" value="-" style="font-size:3vh">
+            </div>
+            <p ondragstart="drag(event,'text')">10</p>
+        </div>
     </div>
 
     <!--NEED TO REMOVE AND REPLACE-->
@@ -175,38 +184,10 @@
                 </div>
                 <p ondragstart="drag(event,'text')">10</p>
             </div>
-            <!--<h1 ondragstart="drag(event,'text')">Mountain Dew Restock</h1>
-                <div class="ui-info-container" id="ui-info-container-1">
-                    <div class="admin-button-container"><input type=button onClick="" class="admin-button" value="+" style="font-size:3vh"><input type=button onClick="" class="admin-button" value="-" style="font-size:3vh"></div>
-                    <p ondragstart="drag(event,'text')">10</p>
-                </div>
-                </h1>
-                <h1 ondragstart="drag(event,'text')">360 nO sKoPe Restock</h1>
-                <div class="ui-info-container" id="ui-info-container-1">
-                    <div class="admin-button-container"><input type=button onClick="" class="admin-button" value="+" style="font-size:3vh"><input type=button onClick="" class="admin-button" value="-" style="font-size:3vh"></div>
-                    <p ondragstart="drag(event,'text')">10</p>
-                </div>
-                </h1>
-                <h1 ondragstart="drag(event,'text')">Xbox Live Restock</h1>
-                <div class="ui-info-container" id="ui-info-container-1">
-                    <div class="admin-button-container"><input type=button onClick="" class="admin-button" value="+" style="font-size:3vh"><input type=button onClick="" class="admin-button" value="-" style="font-size:3vh"></div>
-                    <p ondragstart="drag(event,'text')">10</p>
-                </div>
-                <h1 ondragstart="drag(event,'text')">Gamer Chair Restock</h1>
-                <div class="ui-info-container" id="ui-info-container-1">
-                    <div class="admin-button-container"><input type=button onClick="" class="admin-button" value="+" style="font-size:3vh"><input type=button onClick="" class="admin-button" value="-" style="font-size:3vh"></div>
-                    <p ondragstart="drag(event,'text')">10</p>
-                </div>
-                <h1 ondragstart="drag(event,'text')">Doritos Restock</h1>
-                <div class="ui-info-container" id="ui-info-container-1">
-                    <div class="admin-button-container"><input type=button onClick="" class="admin-button" value="+" style="font-size:3vh"><input type=button onClick="" class="admin-button" value="-" style="font-size:3vh"></div>
-                    <p ondragstart="drag(event,'text')">10</p>
-                </div>
-            </div>-->
         </div>
 
         <!--NEED TO REMOVE AND REPLACE-->
-        <p ondragstart="drag(event,'text')">Cart: <p id="itemsinside" draggable="false" ondragstart="drag(event,'text')">Empty</p>
-
+        <p ondragstart="drag(event,'text')">Cart: <p id="itemsinside" draggable="false" ondragstart="drag(event,'text')">Empty</p>        
+    </div>
 </body>
 </html>
