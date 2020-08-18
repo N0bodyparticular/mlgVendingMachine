@@ -84,7 +84,8 @@ function generate_item(item_cost, item_id, item_count) {
 }
 
 function update_items_table() {
-    /*let items_table = document.getElementById("items-table");
+    /*
+     * let items_table = document.getElementById("items-table");
 
     items_table.innerHTML = items_table_reset_text;
     for (let item_idx = 0; item_idx < items.length; item_idx = item_idx + 1) {
@@ -93,7 +94,8 @@ function update_items_table() {
     }
 
     console.log("Updated items table html:");
-    console.log(items_table.innerHTML);*/
+    console.log(items_table.innerHTML);
+    */
     console.log("update_items_table is deprecated");
 }
 
@@ -164,7 +166,7 @@ function press_button_handle(key) {
             break;
     }
 
-    document.getElementById("codeDisplay").innerText = currentCode; // update the code display
+    document.getElementById("codeDisplay").innerText = currentCode.padStart(3, '0'); // update the code display
 }
 
 
@@ -173,6 +175,7 @@ init_machine(); // Setup everything.
 
 //Makes it so that if you do not have enough funds it will hide the money you cannot spend else it will show them
 function money_update() {
+    document.getElementById("money-display").innerText = "$" + getCurrentMoney().toFixed(2);
     //document.getElementById("moneyinside").innerHTML = moneyin;
     if (wallet < 5) {
         document.getElementById("money_5").style.visibility = "hidden";

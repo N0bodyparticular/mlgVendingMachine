@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <!--Title of site along with the link and script tags to connect the css and js-->
@@ -64,7 +64,7 @@
         <div class="side-panel">
             <!--The money counter itself which conatins the words money in along with a p tag which changes based on javascript-->
             <div class="money-counter">
-                <p ondragstart="drag(event,'text')" id="moneyin">Code: <p id="codeDisplay" ondragstart="drag(event,'text')">0</p></p>
+                <p ondragstart="drag(event,'text')" id="moneyin">Code:&nbsp;<span id="codeDisplay" ondragstart="drag(event,'text')">000</span><span>&nbsp;&nbsp;Money:&nbsp;</span><span id="money-display">$0.00</span></p>
             </div>
             <div>
                 <!--The table used to create the keypad which has each button with an onclick function with passes one parameter which is equal to the value of the button itself-->
