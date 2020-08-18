@@ -11,9 +11,22 @@ let items_name_map = new Map([
     [666, '24 hour Xbox Live Voucher'],
     [000, 'testingitem']
 ]); // Stores the items' names and codes for a mapping to text display names.
+let items_imagepath_map = new Map([
+    [420, 'dew.jpg'],
+    [696, 'doritos.png'],
+    [001, 'ash.png'],
+    [760, 'e.png'],
+    [360, 'noskope.webp'],
+    [720, 'faze.png'],
+    [785, 'tag.png'],
+    [666, 'voucher.png'],
+    [000, 'testingitem']
+]); // Stores the items' names and image urls for a mapping to display images.
 let currentCode = ''; // Currently entered code in machine.
-let wallet = 12;
-let currentMachineMoney = 1;
+let wallet = 12; // Money in wallet
+let currentMachineMoney = 1; // Money in machine.
+let currentItemsString = "";
+let isFirstItem = true; // Is first item out from machine?
 
 function getCurrentMoney() {
     return currentMachineMoney;
@@ -71,7 +84,20 @@ function getItemFromCode(code) {
     console.log("Selected: " + items_name_map.get(parseInt(code)));
     console.log("User now owns item.");
 
+    if (isFirstItem == true) {
+        isFirstItem = false;
+    } else {
+        currentItemsString = currentItemsString + ", ";
+    }
+    currentItemsString = currentItemsString + items_name_map.get(parseInt(code));
 
+    document.getElementById("inventory-items").innerHTML = currentItemsString; // Change display items names.
+
+    var img = document.createElement("img");
+    img.src = items_imagepath_map.get(parseInt(code));
+    document.getElementById("inventory-display").appendChild(img); // Add the image.
+
+    money_update();
     return items_name_map.get(parseInt(code));
 }
 
@@ -167,6 +193,7 @@ function press_button_handle(key) {
     }
 
     document.getElementById("codeDisplay").innerText = currentCode.padStart(3, '0'); // update the code display
+    money_update();
 }
 
 
@@ -225,6 +252,7 @@ function drop_slot(ev) {
     wallet -= hold;
     money_update();
     setCurrentMoney(getCurrentMoney() + parseFloat(hold.toFixed(2))); // Increase money amount.
+    money_update();
 }
 
 //Toggles the class switch on the wallet to make it change size
@@ -240,7 +268,7 @@ function unlock() {
         return;
     }
     //For failed attempts
-    
+
     //If sucessful changes the admin menu's class to make it visible
     if (Sha256.hash(password) == "b9c506adc8d5313abb3f2ba29e5d471685784ec74b628f5855743c3c2ed9f01e") {
         //alert("Welcome");
