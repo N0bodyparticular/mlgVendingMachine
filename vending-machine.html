@@ -9,41 +9,17 @@
     <script type="text/javascript" src="Vending-Machine-JS.js"></script>
 </head>
 <body>
-    <ul>
-        <!-- List of items/codes, temp. -->
-        <li>
-            Mountain Dew <span id="item-1">[420][$2.50]</span>
-        </li>
-        <li>
-            Doritos <span id="item-2">[696][$1.20]</span>
-        </li>
-        <li>
-            Ash's head hitbox <span id="item-3">[001][$50.00]</span>
-        </li>
-        <li>
-            AimBot <span id="item-4">[760][$15.00]</span>
-        </li>
-        <li>
-            No Skope <span id="item-5">[360][$36.00]</span>
-        </li>
-        <li>
-            FaZe Membership <span id="item-6">[720][$10.00]</span>
-        </li>
-        <li>
-            Obnoxious Xbox Gamertag <span id="item-7">[785][$18.00]</span>
-        </li>
-        <li>
-            24 hour Xbox Live Voucher <span id="item-8">[xbox code][xbox price]</span>
-        </li>
-
-    </ul>
+    
     <!--The admin menu itself and everything it contains-->
     <div class="admin-ui" id="admin-ui">
         <!--The x to close the menu with the lock function-->
         <img class="close-admin" src="x.png" onclick="lock()">
         <!--All of the items within the admin menu itself including the name of the option and the buttons and value correlating with it, and it also includes all of the containers for specific positioning-->
-        <h1 ondragstart="drag(event,'text')">Auto Restock</h1>
-        <h1 ondragstart="drag(event,'text')">Ash Hitbox Restock</h1>
+        <h1 ondragstart="drag(event,'text')">Admin Menu</h1>
+
+        <h2 ondragstart="drag(event,'text')">Item Restock</h2>
+        <p>Select an item code on the keypas, and use the +/- keys to change stock.</p>
+        <p>Selected: <span id="restock-name">None</span>.</p>
         <div class="ui-info-container" id="ui-info-container-1">
             <div class="admin-button-container">
                 <input type=button onClick="" class="admin-button" value="+" style="font-size:3vh">
@@ -53,8 +29,6 @@
         </div>
     </div>
 
-    <!--NEED TO REMOVE AND REPLACE-->
-    <p ondragstart="drag(event,'text')">Cart: <p id="itemsinside" draggable="false" ondragstart="drag(event,'text')">Empty</p>
 
     <!--The container used to wrap the whole machine-->
     <div class="machine-container">
@@ -141,6 +115,12 @@
             </div>
             <!--The lock with a function to request a password and if the input is the same as the set password it will change the hidden admin menu-->
             <img src="lock.jpg" class="admin" onclick="unlock()">
+            <!-- Holds the password enter section for the machine. Opened when the lock's clicked. -->
+            <div id="password-area" hidden>
+                <p>Enter admin password:</p>
+                <input id="password-enter" type="password" /><button id="password-submit" onclick="checkPassword();">Submit</button><br />
+                <p id="wrong-password" style="color:red;">Wrong password!</p>
+            </div>
         </div>
         <ul>
             <!-- List of items/codes, temp. -->
@@ -170,24 +150,9 @@
             </li>
 
         </ul>
-        <!--The admin menu itself and everything it contains-->
-        <div class="admin-ui" id="admin-ui">
-            <!--The x to close the menu with the lock function-->
-            <img class="close-admin" src="x.png" onclick="lock()">
-            <!--All of the items within the admin menu itself including the name of the option and the buttons and value correlating with it, and it also includes all of the containers for specific positioning-->
-            <h1 ondragstart="drag(event,'text')">Auto Restock</h1>
-            <h1 ondragstart="drag(event,'text')">Ash Hitbox Restock</h1>
-            <div class="ui-info-container" id="ui-info-container-1">
-                <div class="admin-button-container">
-                    <input type=button onClick="" class="admin-button" value="+" style="font-size:3vh">
-                    <input type=button onClick="" class="admin-button" value="-" style="font-size:3vh">
-                </div>
-                <p ondragstart="drag(event,'text')">10</p>
-            </div>
-        </div>
 
-        <!--NEED TO REMOVE AND REPLACE-->
-        <p ondragstart="drag(event,'text')">Cart: <p id="itemsinside" draggable="false" ondragstart="drag(event,'text')">Empty</p>    
+        
+    
         
         <div id="inventory-display">
             <p>Your items:<span id="inventory-items">None</span></p>

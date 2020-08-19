@@ -23,8 +23,8 @@ let items_imagepath_map = new Map([
     [000, 'testingitem']
 ]); // Stores the items' names and image urls for a mapping to display images.
 let currentCode = ''; // Currently entered code in machine.
-let wallet = 12; // Money in wallet
-let currentMachineMoney = 1; // Money in machine.
+let wallet = 40; // Money in wallet
+let currentMachineMoney = 0.0; // Money in machine.
 let currentItemsString = "";
 let isFirstItem = true; // Is first item out from machine?
 
@@ -263,24 +263,58 @@ function transition() {
 
 //Requests a password for the admin menu
 function unlock() {
-    password = prompt("Insert password: ");
+    document.getElementById("password-area").hidden = false;
+    document.getElementById("wrong-password").hidden = true;
+}
+
+function checkPassword() {
+    let password = document.getElementById("password-enter").value;
     //If the prompt is empty when submitted or if you cancel it doesn't alert the user anything
     if (password == "" || password == null) {
-        return;
+        console.log("Invalid password was entered.");
+        document.getElementById("wrong-password").hidden = false;
+        setTimeout(hidePasswordEnter, 1000);
+        return 0;
     }
     //For failed attempts
 
     //If sucessful changes the admin menu's class to make it visible
     if (Sha256.hash(password) == "b9c506adc8d5313abb3f2ba29e5d471685784ec74b628f5855743c3c2ed9f01e") {
         //alert("Welcome");
+        console.log("Correct password was enetered.")
         document.getElementById("admin-ui").classList.toggle("admin-display");
-    } else {
-        alert("OI! Wrong password!");
+        hidePasswordEnter();
+        return 1;
     }
 
+    console.log("Wrong password was submitted.");
+    document.getElementById("wrong-password").hidden = false;
+    setTimeout(hidePasswordEnter, 1000);
+    return 0;
+}
+
+function hidePasswordEnter() {
+    document.getElementById("wrong-password").hidden = true;
+    document.getElementById("password-area").hidden = true;
 }
 //Used to close the admin menu
 function lock() {
     document.getElementById("admin-ui").classList.toggle("admin-display");
     document.getElementById("ui-info-container-1").classList.toggle("ui-info-container-close");
+    hidePasswordEnter();
 }
+
+function changeStock(amount) {
+    let change_item = getItemFromList(currentCode);
+    let change_item_name = null; //TODO: finish.
+}
+
+function update_restock_name() {
+    let name = "None";
+    if (items_name_map.has(parseInt(currentCode))) {
+        name = items_name_map.get(parseInt(currentCode));
+    }
+    document.getElementById("restock-name").innerText = name;
+}
+
+setTimeout(update_restock_name, 500);
