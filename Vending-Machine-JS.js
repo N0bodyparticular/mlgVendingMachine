@@ -95,6 +95,7 @@ function getItemFromCode(code) {
 
     var img = document.createElement("img");
     img.src = items_imagepath_map.get(parseInt(code));
+    img.className = "item-display-image";
     document.getElementById("inventory-display").appendChild(img); // Add the image.
 
     money_update();
