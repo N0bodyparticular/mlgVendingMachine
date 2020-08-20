@@ -22,10 +22,10 @@
         <p>Selected: <span id="restock-name">None</span>.</p>
         <div class="ui-info-container" id="ui-info-container-1">
             <div class="admin-button-container">
-                <input type=button onClick="" class="admin-button" value="+" style="font-size:3vh">
-                <input type=button onClick="" class="admin-button" value="-" style="font-size:3vh">
+                <button type=button onClick="changeStock(1);" class="admin-button"  style="font-size:3vh">+</button>
+                <button type=button onClick="changeStock(-1);" class="admin-button"  style="font-size:3vh">-</button>
             </div>
-            <p ondragstart="drag(event,'text')">10</p>
+            <p ondragstart="drag(event,'text')"><span id="item-counter">[#]</span></p>
         </div>
     </div>
 

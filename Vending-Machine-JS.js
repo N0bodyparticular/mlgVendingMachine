@@ -305,16 +305,25 @@ function lock() {
 }
 
 function changeStock(amount) {
-    let change_item = getItemFromList(currentCode);
-    let change_item_name = null; //TODO: finish.
+    let change_item = getItemEntryFromList(currentCode);
+
+    if ((change_item.count + amount) >= 0) {
+        change_item.count += amount;
+    }
+
+    console.log("Changed item " + items_name_map.get(parseInt(currentCode)) + " by " + amount);
 }
 
-function update_restock_name() {
+function update_restock() {
     let name = "None";
+    document.getElementById("item-counter").innerText = "N/A";
     if (items_name_map.has(parseInt(currentCode))) {
         name = items_name_map.get(parseInt(currentCode));
+        document.getElementById("item-counter").innerText = '' + getItemEntryFromList(currentCode).count;
     }
     document.getElementById("restock-name").innerText = name;
+    
+
 }
 
-setTimeout(update_restock_name, 500);
+setInterval(update_restock, 500);
