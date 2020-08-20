@@ -30,12 +30,10 @@
 
         <h2>User Wallet Change</h2>
         <p>Use the spinbox to change and view the current money amount the user has.</p>
-        <input type="number" step="0.05" min="0.00" max="5000.00" id="wallet-change" />
-        <div class="ui-info-container">
-
-
-
-        </div>
+        <input type="number" step="0.05" min="0.00" max="5000.00" id="wallet-change" onchange="wallet = parseFloat(document.getElementById('wallet-change').value); money_update();" /> <br />
+        
+        <h2>Machine money return</h2>
+        <button onclick="money_return();">Money Return</button>
     </div>
 
 

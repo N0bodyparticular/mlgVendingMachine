@@ -27,6 +27,7 @@ let wallet = 40; // Money in wallet
 let currentMachineMoney = 0.0; // Money in machine.
 let currentItemsString = "";
 let isFirstItem = true; // Is first item out from machine?
+let totalMoneyIn = 0;
 
 function getCurrentMoney() {
     return currentMachineMoney;
@@ -38,9 +39,7 @@ function setCurrentMoney(newMoney) {
 
 function getItemEntryFromList(code) {
     let val = null;
-    console.log(parseInt(code));
-    for (let j = 0; j < items.length; j++) { // Find the item.
-        console.log(items[j]);
+    for (let j = 0; j < items.length; j++) { // Find the item.        
         if (items[j].id == parseInt(code)) {
             val = items[j];
         }
@@ -65,16 +64,19 @@ function getItemFromCode(code) {
     // Check if item purchace is valid/allowed
     if (item == null) { // Check if item can be found.
         console.log("Error: Failed to find item #" + code);
+        alert("Error: Failed to find item #" + code)
         return null;
     }
 
     if (item.count <= 0) { // Check if there are some left.
         console.log("No items remaining.");
+        alert("No items of this type remain!");
         return null;
     }
 
     if (getCurrentMoney() < item.cost) { // Check if user has enough money.
         console.log("Not enough money. Add more.");
+        alert("Not enough money. Add more.");
         return null;
     }
 
@@ -83,6 +85,7 @@ function getItemFromCode(code) {
 
     console.log("Selected: " + items_name_map.get(parseInt(code)));
     console.log("User now owns item.");
+    alert("You now have " + items_name_map.get(parseInt(code)));
 
     if (isFirstItem == true) {
         isFirstItem = false;
@@ -108,22 +111,6 @@ function generate_item(item_cost, item_id, item_count) {
     temp.id = item_id;
     temp.count = item_count;
     return temp; // Generate an item with the values and retrun it so it can be added to the data.
-}
-
-function update_items_table() {
-    /*
-     * let items_table = document.getElementById("items-table");
-
-    items_table.innerHTML = items_table_reset_text;
-    for (let item_idx = 0; item_idx < items.length; item_idx = item_idx + 1) {
-        let build_string = "<tr><td>" + items_name_map.get(items[item_idx].id) + "</td><td>$" + items[item_idx].cost + "</td><td>" + items[item_idx].count + "</td></tr>";
-        items_table.innerHTML = items_table.innerHTML + build_string;
-    }
-
-    console.log("Updated items table html:");
-    console.log(items_table.innerHTML);
-    */
-    console.log("update_items_table is deprecated");
 }
 
 function init_machine() {
@@ -182,6 +169,10 @@ function press_button_handle(key) {
 
         case '#':
             currentCode = "";
+            wallet += currentMachineMoney;
+            totalMoneyIn -= currentMachineMoney;
+            currentMachineMoney = 0;
+            money_update();
             break;
 
         case '0':
@@ -249,10 +240,14 @@ function drag(ev, mon) {
 //Adds the value of the money being dropped into the slot
 function drop_slot(ev) {
     ev.preventDefault();
-    moneyin += hold;
-    wallet -= hold;
-    money_update();
-    setCurrentMoney(getCurrentMoney() + parseFloat(hold.toFixed(2))); // Increase money amount.
+    if (hold != null) {
+        moneyin += hold;
+        wallet -= hold;
+        money_update();
+        setCurrentMoney(getCurrentMoney() + parseFloat(hold.toFixed(2))); // Increase money amount.
+        totalMoneyIn += hold;
+    }
+    hold = null;
     money_update();
 }
 
@@ -317,17 +312,25 @@ function changeStock(amount) {
 function update_restock() {
     let name = "None";
     document.getElementById("item-counter").innerText = "N/A";
-    if (items_name_map.has(parseInt(currentCode))) {
-        name = items_name_map.get(parseInt(currentCode));
-        document.getElementById("item-counter").innerText = '' + getItemEntryFromList(currentCode).count;
-    }
     document.getElementById("restock-name").innerText = name;
 
-    if (wallet != parseFloat(document.getElementById("wallet-change").value)) {
-        wallet = parseFloat(document.getElementById("wallet-change").value);
+    if (items_name_map.has(parseInt(currentCode))) {
+        name = items_name_map.get(parseInt(currentCode));
+        document.getElementById("restock-name").innerText = name;
+
+        if (getItemEntryFromList(currentCode) != null) { // Null check.
+            document.getElementById("item-counter").innerText = '' + getItemEntryFromList(currentCode).count;
+        }
     }
-    document.getElementById("wallet-change").value = wallet;
-    
 }
 
-setInterval(update_restock, 150);
+function money_return() {
+    if (totalMoneyIn <= 0) {
+        alert("There was no money in the machine.");
+    } else {
+        alert("You took $" + totalMoneyIn.toFixed(2) + " from the machine.");
+        totalMoneyIn = 0;
+    }
+}
+
+setInterval(update_restock, 250);

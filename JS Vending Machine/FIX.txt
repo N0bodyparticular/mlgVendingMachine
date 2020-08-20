@@ -1,1 +1,0 @@
-The +- buttons are sliding werid after being used on odd times
