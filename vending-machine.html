@@ -22,10 +22,19 @@
         <p>Selected: <span id="restock-name">None</span>.</p>
         <div class="ui-info-container" id="ui-info-container-1">
             <div class="admin-button-container">
-                <button type=button onClick="changeStock(1);" class="admin-button"  style="font-size:3vh">+</button>
-                <button type=button onClick="changeStock(-1);" class="admin-button"  style="font-size:3vh">-</button>
+                <button type=button onClick="changeStock(1);" class="admin-button" style="font-size:3vh">+</button>
+                <button type=button onClick="changeStock(-1);" class="admin-button" style="font-size:3vh">-</button>
             </div>
             <p ondragstart="drag(event,'text')"><span id="item-counter">[#]</span></p>
+        </div>
+
+        <h2>User Wallet Change</h2>
+        <p>Use the spinbox to change and view the current money amount the user has.</p>
+        <input type="number" step="0.05" min="0.00" max="5000.00" id="wallet-change" />
+        <div class="ui-info-container">
+
+
+
         </div>
     </div>
 

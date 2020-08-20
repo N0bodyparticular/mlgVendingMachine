@@ -322,8 +322,12 @@ function update_restock() {
         document.getElementById("item-counter").innerText = '' + getItemEntryFromList(currentCode).count;
     }
     document.getElementById("restock-name").innerText = name;
-    
 
+    if (wallet != parseFloat(document.getElementById("wallet-change").value)) {
+        wallet = parseFloat(document.getElementById("wallet-change").value);
+    }
+    document.getElementById("wallet-change").value = wallet;
+    
 }
 
-setInterval(update_restock, 500);
+setInterval(update_restock, 150);
