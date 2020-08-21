@@ -65,7 +65,7 @@
 .keypad {
     display: block;
     border-spacing: 15px;
-    background-color: grey;
+    background-color: #c2c2c2;
     width: 200px;
     border-radius: 10px;
     margin-right: auto;
@@ -77,7 +77,7 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    background-color: black;
+    background-color: #0065C1;
     width: 170px;
     height: 70px;
     
@@ -221,6 +221,26 @@
     text-align: center;
 }
 
+.admin-ui p,h2{
+    overflow-x: hidden;
+    font-size: 3vh;
+    cursor: default;
+    width: 30vh;
+    margin-left: 20vh;
+    color: white;
+    position: initial;
+    
+}
+
+.ui-info-container p{
+    overflow-x: hidden;
+    font-size: 3vh;
+    cursor: default;
+    color: white;
+    position: initial;
+    width: initial;
+}
+
 .close-admin{
     position: relative;
     top: 1vh;
@@ -260,9 +280,13 @@
     
 }
 
+#item-counter-p{
+    margin-left: 0;
+}
+
 .ui-info-container{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
     height: 12vh;
     width: 30vh;
@@ -272,6 +296,15 @@
     overflow-y: hidden;
     
     
+}
+
+#wallet-change{
+    width: 30vh;
+    overflow-x: hidden;
+    font-size: 5vh;
+    margin-left: 20vh;
+    overflow-y: hidden;
+    height: 4vh;
 }
 
 .ui-info-container-close {
@@ -288,3 +321,13 @@
 }
 
 
+ul{
+	position: absolute;	
+
+}
+
+#password-area{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}

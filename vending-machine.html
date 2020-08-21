@@ -25,7 +25,7 @@
                 <button type=button onClick="changeStock(1);" class="admin-button" style="font-size:3vh">+</button>
                 <button type=button onClick="changeStock(-1);" class="admin-button" style="font-size:3vh">-</button>
             </div>
-            <p ondragstart="drag(event,'text')"><span id="item-counter">[#]</span></p>
+            <p ondragstart="drag(event,'text')" id="item-counter-p"><span id="item-counter">[#]</span></p>
         </div>
 
         <h2>User Wallet Change</h2>
@@ -94,7 +94,7 @@
                 <br>
                 <!--The remaining buttons used in purchasing one empties the cart and the other checks to see if the purchase is valiad with js and corresponds a response with the outcome-->
                 <div class="extra-buttons">
-                    <input type=button onClick="press_button_handle('#');" value="Clear Cart" style="font-size:20px" />
+                    <input type=button onClick="press_button_handle('#');" value="Clear" style="font-size:20px" />
 
 
                     <input type=button onClick="press_button_handle('*');" value="Pay" style="font-size:20px" />
@@ -161,9 +161,10 @@
         
     
         
-        <div id="inventory-display">
+        
+    </div>
+<div id="inventory-display">
             <p>Your items:<span id="inventory-items">None</span></p>
         </div>
-    </div>
 </body>
 </html>
