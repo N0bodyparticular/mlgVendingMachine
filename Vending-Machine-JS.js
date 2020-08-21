@@ -29,24 +29,28 @@ let currentItemsString = "";
 let isFirstItem = true; // Is first item out from machine?
 let totalMoneyIn = 0;
 
+// Gets user's money in machine.
 function getCurrentMoney() {
     return currentMachineMoney;
 }// Gets current amount of money in the machine.
 
+// Sets user's money in machine.
 function setCurrentMoney(newMoney) {
     currentMachineMoney = newMoney;
 } // Sets the amount of money in the machine.
 
+// Gets ref to the item corresponding to code.
 function getItemEntryFromList(code) {
     let val = null;
     for (let j = 0; j < items.length; j++) { // Find the item.        
-        if (items[j].id == parseInt(code)) {
+        if (items[j].id == parseInt(code)) { // Check if correct number.
             val = items[j];
         }
     }
     return val;
 }
 
+// Buys item with user's money.
 function getItemFromCode(code) {
     // Handle getting item from machine with this function.
     if (code.length > 3) { // Check if code is too long
@@ -105,6 +109,7 @@ function getItemFromCode(code) {
     return items_name_map.get(parseInt(code));
 }
 
+// Makes an item entry, holds the cost, id and number of the said item.
 function generate_item(item_cost, item_id, item_count) {
     let temp = {};
     temp.cost = item_cost;
@@ -113,6 +118,7 @@ function generate_item(item_cost, item_id, item_count) {
     return temp; // Generate an item with the values and retrun it so it can be added to the data.
 }
 
+// Setup the machine first-time.
 function init_machine() {
     items = []; // generate the items in the inventory 
     items.push(generate_item(2.50, 420, 10));
@@ -123,11 +129,9 @@ function init_machine() {
     items.push(generate_item(10.00, 720, 10));
     items.push(generate_item(18.00, 785, 10));
     items.push(generate_item(3.00, 666, 10));
-
-    //items_table_reset_text = document.getElementById("items-table").innerHTML;
-    //update_items_table();
 }
 
+// Manages the keypad presses.
 function press_button_handle(key) {
     console.log(key + " was pressed.");
     switch (key) {
@@ -184,16 +188,17 @@ function press_button_handle(key) {
             break;
     }
 
+    // Update some on-key-press changes.
     document.getElementById("codeDisplay").innerText = currentCode.padStart(3, '0'); // update the code display
     money_update();
 }
 
-
-init_machine(); // Setup everything.
-
-
 //Makes it so that if you do not have enough funds it will hide the money you cannot spend else it will show them
 function money_update() {
+    /* 
+     * Changes the visibility of money depending on what 
+     * amount of money is left in the wallet.
+     */
     document.getElementById("money-display").innerText = "$" + getCurrentMoney().toFixed(2);
     //document.getElementById("moneyinside").innerHTML = moneyin;
     if (wallet < 5) {
@@ -234,13 +239,26 @@ function drag(ev, mon) {
     else {
         hold = 0;
     }
-
 }
 
 //Adds the value of the money being dropped into the slot
 function drop_slot(ev) {
     ev.preventDefault();
-    if (hold != null) {
+
+    if (hold != null) { // Check if it contains real value
+        /*
+         * Once upon a time, there was an issue where  the user
+         * could drag one type of money into the machine, then
+         * select text or an image, then drag that in instead of
+         * money. It would be interpreted as dragging the money 
+         * that was previously added again. 
+         * 
+         * I fixed it by changing hold (contains the currently
+         * held value of money) to null as soon as the drag was 
+         * finished. When checking for the dragged money amount, 
+         * it also is now checked for null because if it is null, 
+         * a proper piece of money wasn't dragged.
+         */
         moneyin += hold;
         wallet -= hold;
         money_update();
@@ -262,19 +280,19 @@ function unlock() {
     document.getElementById("wrong-password").hidden = true;
 }
 
+// Checks if password is valid, handles unlocking the admin section.
 function checkPassword() {
     let password = document.getElementById("password-enter").value;
     //If the prompt is empty when submitted or if you cancel it doesn't alert the user anything
-    if (password == "" || password == null) {
+    if (password == "" || password == null) { // Check if valid.
         console.log("Invalid password was entered.");
         document.getElementById("wrong-password").hidden = false;
         setTimeout(hidePasswordEnter, 1000);
         return 0;
     }
-    //For failed attempts
 
-    //If sucessful changes the admin menu's class to make it visible
-    if (Sha256.hash(password) == "b9c506adc8d5313abb3f2ba29e5d471685784ec74b628f5855743c3c2ed9f01e") {
+    // If sucessful changes the admin menu's class to make it visible
+    if (Sha256.hash(password) == "b9c506adc8d5313abb3f2ba29e5d471685784ec74b628f5855743c3c2ed9f01e") { // Check if hashes match, better than hiding pwd in plaintext.
         //alert("Welcome");
         console.log("Correct password was enetered.")
         document.getElementById("admin-ui").classList.toggle("admin-display");
@@ -282,16 +300,18 @@ function checkPassword() {
         return 1;
     }
 
-    console.log("Wrong password was submitted.");
+    console.log("Wrong password was submitted."); // Fallback for fail.
     document.getElementById("wrong-password").hidden = false;
     setTimeout(hidePasswordEnter, 1000);
     return 0;
 }
 
+// Hides password enter stuff.
 function hidePasswordEnter() {
     document.getElementById("wrong-password").hidden = true;
     document.getElementById("password-area").hidden = true;
 }
+
 //Used to close the admin menu
 function lock() {
     document.getElementById("admin-ui").classList.toggle("admin-display");
@@ -299,22 +319,24 @@ function lock() {
     hidePasswordEnter();
 }
 
+// Changes the stock item respective to currentCode by amount.
 function changeStock(amount) {
     let change_item = getItemEntryFromList(currentCode);
 
-    if ((change_item.count + amount) >= 0) {
+    if ((change_item.count + amount) >= 0) { // Cant have negative items.
         change_item.count += amount;
     }
 
     console.log("Changed item " + items_name_map.get(parseInt(currentCode)) + " by " + amount);
 }
 
+// Updates the restock menu counter and names.
 function update_restock() {
     let name = "None";
-    document.getElementById("item-counter").innerText = "N/A";
+    document.getElementById("item-counter").innerText = "N/A"; // Defalt fallbacks for when nothing's selected.
     document.getElementById("restock-name").innerText = name;
 
-    if (items_name_map.has(parseInt(currentCode))) {
+    if (items_name_map.has(parseInt(currentCode))) { // Is the selected item valid?
         name = items_name_map.get(parseInt(currentCode));
         document.getElementById("restock-name").innerText = name;
 
@@ -324,13 +346,15 @@ function update_restock() {
     }
 }
 
+// Handles returning money from machine to the operator
 function money_return() {
-    if (totalMoneyIn <= 0) {
+    if (totalMoneyIn <= 0) { // Is there money to take?
         alert("There was no money in the machine.");
-    } else {
+    } else { // Geive back money.
         alert("You took $" + totalMoneyIn.toFixed(2) + " from the machine.");
         totalMoneyIn = 0;
     }
 }
 
+init_machine(); // Setup everything.
 setInterval(update_restock, 250);
