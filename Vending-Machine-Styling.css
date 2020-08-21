@@ -131,6 +131,7 @@
     justify-content: space-around;
     flex-direction: column;
     margin-top: 300px;
+    width: 400px;
     
     
 }
@@ -147,6 +148,7 @@
     border: 3px;
     border-style: solid;
     border-radius: 10px;
+    width: 390px;
 }
 
 #moneyin {
@@ -330,4 +332,40 @@ ul{
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+}
+
+#password-area{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#password-area p {
+    font-size: 45px;
+    color: white;
+}
+
+#password-area input {
+    width: 390px;
+    height: 40px;
+    font-size: 10px;
+    color: red;
+    border-color: blue
+}
+
+#password-area button {
+    
+    display: flex;
+    font-size: 30px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#money-return {
+    cursor: pointer;
+    display: flex;
+    margin-left: 20vh;
+    font-size: 2vh;
+    color: white;
+    width: 30vh; 
+    background-color: red;
 }
