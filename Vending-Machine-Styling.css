@@ -64,18 +64,27 @@
     width: 90%;
     margin-top: 500px;
     height: 1200px;
-    background-color: white;
+    background-color: #a5d4ff;
     border-radius: 20px;
     margin-right: auto;
     margin-left: auto;
+    padding: 30px;
+    border-spacing: 20px;
 }
 
-.items-container td{
-    color: blue;
+.items-container td {
+    color: white;
     font-size: 30px;
     font-weight: bold;
+    background-color: #3b82c3;
+    border-radius: 100px;
     
-    
+}
+
+.items-container td img{
+    width: 150px;
+    height: 150px;
+
 }
 
 .vending-machine {
@@ -88,7 +97,7 @@
 .keypad {
     display: block;
     border-spacing: 15px;
-    background-color: #c2c2c2;
+    background-color: #f3f1f1;
     width: 200px;
     border-radius: 10px;
     margin-right: auto;
@@ -344,7 +353,8 @@
 }
 
 .item-display-image {
-    width: 50px;
+    width: 150px;
+    height: 150px;
 }
 
 
@@ -393,4 +403,10 @@ ul{
     color: white;
     width: 30vh; 
     background-color: red;
+}
+
+#inventory-display p{
+    font-size: 30px;
+    color: blue;
+    font-weight: bold;
 }
