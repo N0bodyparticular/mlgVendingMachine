@@ -189,7 +189,7 @@ function press_button_handle(key) {
     }
 
     // Update some on-key-press changes.
-    document.getElementById("codeDisplay").innerText = currentCode.padStart(3, '0'); // update the code display
+    document.getElementById("codeDisplay").innerText = (currentCode.padStart(3, '0')).substring(0,3); // update the code display
     money_update();
 }
 
