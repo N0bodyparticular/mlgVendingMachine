@@ -276,7 +276,7 @@ function transition() {
 
 //Requests a password for the admin menu
 function unlock() {
-    document.getElementById("password-area").hidden = false;
+    document.getElementById("password-area").hidden = !document.getElementById("password-area").hidden;
     document.getElementById("wrong-password").hidden = true;
 }
 
