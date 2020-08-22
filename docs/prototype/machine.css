@@ -1,0 +1,27 @@
+.machine-body {
+    /*display:block;
+    float:left;
+    color:white;
+    width:400px;
+    height:800px;
+    background: rgb(51, 58, 142);
+    border: 1px solid black;
+    border-radius: 25px;*/
+}
+
+h3 {
+    font-size:85px;
+}
+
+.machine-items {
+    position:relative;
+    display:flex;
+    margin-left:10px;
+    top:10px;
+}
+
+.item-number-enter {
+    position: relative;
+    display: flex;
+    right:50px;
+}
