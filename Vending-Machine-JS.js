@@ -12,11 +12,11 @@ let items_name_map = new Map([
     [000, 'testingitem']
 ]); // Stores the items' names and codes for a mapping to text display names.
 let items_imagepath_map = new Map([
-    [420, 'dew.jpg'],
+    [420, 'dew.png'],
     [696, 'doritos.png'],
     [001, 'ash.png'],
     [760, 'e.png'],
-    [360, 'noskope.webp'],
+    [360, 'noskope.png'],
     [720, 'faze.png'],
     [785, 'tag.png'],
     [666, 'voucher.png'],
