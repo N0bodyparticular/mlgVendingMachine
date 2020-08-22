@@ -1,7 +1,72 @@
+/* Makes the cursor an image of a pixelated gun to all parts of the webpage unless otherwise specified*/
 *{
     cursor: url('gun-icon.png'), default;
 }
 
+
+/*The whole vending machince conatiner which uses display flex to put the divs cleanly next to one another and with a background image of the plain vending machine*/
+.machine-container{
+    background-image: url("machine.png");
+    background-size: cover;
+    display: flex;
+    width: 1500px;
+    height: 1800px;
+    
+    
+
+}
+
+
+/* The left hand side of the machince with a width that takes up the same ount of space as the blue portion of the image */
+.vending-machine {
+    width: 62%;
+    height: 100%;
+    
+}
+
+/*Where all the items are kept which aligns all the text within the table, with a width of 90% of the vending machine div and has a unique margin top to move it away from the text on the machine*/
+.items-container {
+    text-align: center;
+    width: 90%;
+    margin-top: 500px;
+    height: 1200px;
+    background-color: #a5d4ff;
+    border-radius: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 30px;
+    border-spacing: 20px;
+}
+
+/*each table cell has white text, a larger font size and a blue colored circle like background*/
+.items-container td {
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    background-color: #3b82c3;
+    border-radius: 100px;
+    
+}
+
+
+/*Each of the images within the cells share the same size to make it easier to fit evenly*/
+.items-container td img{
+    width: 150px;
+    height: 150px;
+
+}
+
+/*Uses display flex and felx direction to evenly space out all the child elements evenly down the div and has the corresponding with to the left side of the machine*/
+.side-panel {
+    padding-left: 50px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    margin-top: 300px;
+    width: 38%;
+}
+
+/*All money minus the 5 dollar bill is given the same properties for height and width and the cursor that specifies drag*/
 #money_1, #money_2, #money_20, #money_50 {
     width: 50px;
     height: 50px;
@@ -10,7 +75,7 @@
     border: 0px;
     cursor: all-scroll;
 }
-
+/*Similar dimens to the rest of the money but is more suitable to the rectangular shape*/
 #money_5 {
     margin: 0px;
     padding: 0px;
@@ -20,7 +85,7 @@
     cursor: all-scroll;
 }
 
-
+/*The money slot is a simple black rectangle which has been centered using margins centered*/
 #div2 {
     width: 200px;
     height: 100px;
@@ -30,7 +95,7 @@
     margin-right: auto;
 }
 
-
+/*Wallet that is a div with a background image that has been centered with margins and has used display flex to evenly space out money inside along with a transform ease for when the images grows*/
 .money-container {
     transition: transform ease 0.6s;
     width: 370px;
@@ -48,52 +113,13 @@
     margin-left: auto;
 }
 
-.machine-container{
-    background-image: url("machine.png");
-    background-size: cover;
-    display: flex;
-    width: 1500px;
-    height: 1800px;
-    
-    
-
+/*The change that makes the wallet larger with scaling*/
+.switch {
+    transition: transform ease 0.6s;
+    transform: scale(2) translateY(40px);
 }
 
-.items-container {
-    text-align: center;
-    width: 90%;
-    margin-top: 500px;
-    height: 1200px;
-    background-color: #a5d4ff;
-    border-radius: 20px;
-    margin-right: auto;
-    margin-left: auto;
-    padding: 30px;
-    border-spacing: 20px;
-}
-
-.items-container td {
-    color: white;
-    font-size: 30px;
-    font-weight: bold;
-    background-color: #3b82c3;
-    border-radius: 100px;
-    
-}
-
-.items-container td img{
-    width: 150px;
-    height: 150px;
-
-}
-
-.vending-machine {
-    width: 62%;
-    height: 100%;
-    background-size: cover;
-}
-
-
+/*The background to the table is centered and colored an off-white color and is centered with a unique border radius and width*/
 .keypad {
     display: block;
     border-spacing: 15px;
@@ -105,6 +131,7 @@
 
 }
 
+/*Each row used with display flex to evenly space out with own color and dimensions themselves*/
 .keypad tr{
     display: flex;
     align-items: center;
@@ -116,7 +143,7 @@
 }
 
 
-
+/*Each of the buttons in the keypad given their text color, background color, padding and a crosshair cursor (if the gun cursor fails)*/
 .keypad input {
     border-radius: 10px;
     color: white;
@@ -130,12 +157,13 @@
     
 }
 
-.keypad input:hover {
-    
+/*When the buttons are hovered over they flip their origin colors around for the opposing contrast*/
+.keypad input:hover {  
     color: red;
     background-color: white;
 }
 
+/*The extra buttons have the smae blue color as the vending machine to suit the color scheme with suitable font size, border radius and padding*/
 .extra-buttons input{
     color: white;
     background-color: #0065C1;
@@ -145,7 +173,7 @@
     
     
 }
-
+/*This container simply spreads out the buttons even and then centers itself*/
 .extra-buttons{
     display: flex;
     align-items: center;
@@ -155,24 +183,7 @@
     margin-left: auto;
 }
 
-
-
-.side-panel{
-    padding-left: 50px;
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    margin-top: 300px;
-    width: 38%;
-    
-    
-}
-
-.switch{
-    transition: transform ease 0.6s;
-    transform: scale(2) translateY(40px);
-}
-
+/*Gives the money counter div a unique linear gradients to make it look better rather than 1 solid color and cneters it and curves the edges a little*/
 .money-counter {
     display: flex;
     background-image: linear-gradient(green, #c4d816);
@@ -184,14 +195,14 @@
     margin-right: auto;
     margin-left: auto;
 }
-
+/*Simply adjustments to the color, weight and font size of the text */
 #moneyin {
     padding-left: 20px;
     font-size: 20px;
     color: #102802;
     font-weight: bold;
 }
-
+/*Simply adjustments to the color, weight and font size of the text */
 #moneyinside {
     padding-left: 20px;
     font-size: 20px;
@@ -199,6 +210,7 @@
     font-weight: bold;
 }
 
+/*Centers the admin and has the cursor change to pointer to specify interactions*/
 .admin{
     border-radius: 20px;
     background-color: black;
@@ -209,6 +221,8 @@
     cursor: pointer;
 }
 
+
+/*Has an invisible div with no width that is fixed to the top right with an ease for when changes are made*/
 .admin-ui{
     
     opacity: 0;
@@ -224,6 +238,15 @@
 
 }
 
+
+/*The changes to the admin are the opacity increase to full and the width stretches out so that now you can see and interact with the div*/
+.admin-display {
+    opacity: 1;
+    transition: ease 0.8s;
+    width: 70vh;
+    position: fixed;
+}
+/*h1 tags inside the admin ui have measuremnets in vh like the rest of the admin so that it remians the same size on screen regardless of zoom*/
 .admin-ui h1{
     font-size: 5vh;
     width: 30vh;
@@ -236,15 +259,7 @@
     
 }
 
-.admin-display{
-    opacity: 1;
-    transition: ease 0.8s;
-    width: 70vh;
-    position: fixed;
-    
-    
-
-}
+/*Same styling as above but for the change*/
 
 .admin-display h1 {
     overflow-x: hidden;
@@ -257,6 +272,7 @@
     text-align: center;
 }
 
+/*Similar to the h1 tags the p and h2 tags have the same margin and similar looks*/
 .admin-ui p,h2{
     overflow-x: hidden;
     font-size: 3vh;
@@ -268,6 +284,7 @@
     
 }
 
+/*Keeping with the general sizing of font and color scheme as the rest of the text in the admin*/
 .ui-info-container p{
     overflow-x: hidden;
     font-size: 3vh;
@@ -277,6 +294,8 @@
     width: initial;
 }
 
+
+/*Sits the x button relative to the admin conatiner and gives it a size in vh*/
 .close-admin{
     position: relative;
     top: 1vh;
@@ -286,16 +305,8 @@
     cursor: pointer;
 }
 
-.ui{
 
-    height: 100%;
-    width: 30vh;
-    overflow-x: hidden;
-    
-    
-    
-}
-
+/*Changes the buttons color and border to make them stand out amongst the blue and still give it measuremnets in vh*/
 .admin-button{
     height: 4vh;
     width: 4vh;
@@ -308,6 +319,8 @@
     color: white;
 }
 
+
+/*Keeps thhe buttons sitting neatly nest to each other going up and down*/
 .admin-button-container{
     display: flex;
     justify-content: space-evenly;
@@ -316,10 +329,12 @@
     
 }
 
+/*Change in margin*/
 #item-counter-p{
     margin-left: 0;
 }
 
+/*Evenly spreads out the button container and the actual value for the stock with set height and width*/
 .ui-info-container{
     display: flex;
     justify-content: space-around;
@@ -333,7 +348,7 @@
     
     
 }
-
+/*Simply styling to the input that changes the amount in your wallet including the same margin left as the rest of the elements in the admin ui*/
 #wallet-change{
     width: 30vh;
     overflow-x: hidden;
@@ -342,43 +357,37 @@
     overflow-y: hidden;
     height: 4vh;
 }
-
+/*Makes the container look better when closing with correct width and margin*/
 .ui-info-container-close {
     margin-left: 20vh;
     width: 30vh;
 }
 
+/*Simply color change*/
 .ui-info-container p{
     color: white;
 }
 
+/*makes all the produced images have the smae height but will look less stretched but not specifying width*/
 .item-display-image {
     
     height: 150px;
 }
 
-
-ul{
-	position: absolute;	
-
-}
-
+/*Centres the element and the text within it*/
 #password-area{
     text-align: center;
     margin-left: auto;
     margin-right: auto;
 }
 
-#password-area{
-    margin-left: auto;
-    margin-right: auto;
-}
 
+/*Simply change in size and color of font*/
 #password-area p {
     font-size: 45px;
     color: white;
 }
-
+/*Makes the input stand out more with change in color and gives a set width and height*/
 #password-area input {
     width: 390px;
     height: 40px;
@@ -387,6 +396,7 @@ ul{
     border-color: blue
 }
 
+/*Centres and aligns the postion of the button to the input next to it*/
 #password-area button {
     
     display: flex;
@@ -395,9 +405,9 @@ ul{
     margin-left: auto;
 }
 
+/*Normal button with red background color to stand out with white text and the margin to keep it in alignment with the rest of the admin*/
 #money-return {
     cursor: pointer;
-    display: flex;
     margin-left: 20vh;
     font-size: 2vh;
     color: white;
@@ -405,6 +415,7 @@ ul{
     background-color: red;
 }
 
+/*Simply changes to color, weight and size of font*/
 #inventory-display p{
     font-size: 30px;
     color: blue;
