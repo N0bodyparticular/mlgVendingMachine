@@ -44,6 +44,8 @@
     height: 125px;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .machine-container{
@@ -52,11 +54,32 @@
     display: flex;
     width: 1500px;
     height: 1800px;
+    
+    
 
 }
 
+.items-container {
+    text-align: center;
+    width: 90%;
+    margin-top: 500px;
+    height: 1200px;
+    background-color: white;
+    border-radius: 20px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.items-container td{
+    color: blue;
+    font-size: 30px;
+    font-weight: bold;
+    
+    
+}
+
 .vending-machine {
-    width: 65%;
+    width: 62%;
     height: 100%;
     background-size: cover;
 }
@@ -131,7 +154,7 @@
     justify-content: space-around;
     flex-direction: column;
     margin-top: 300px;
-    width: 400px;
+    width: 38%;
     
     
 }
@@ -149,6 +172,8 @@
     border-style: solid;
     border-radius: 10px;
     width: 390px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 #moneyin {
