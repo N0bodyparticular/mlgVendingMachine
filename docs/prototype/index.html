@@ -8,32 +8,89 @@
     </head>
 
     <body>
-        <h1>The MLG Vending Machine</h1>
+        <style>
+            .machine-body table, .machine-body p {
+                position: relative;
+                left: 450px;
+                top: 200px;
+                width: 100px;
+            }
+            .note {
+                height: 30px;
+                width: 60px;
+                cursor: pointer;
+            }
+            .money{
+                position: relative;
+                top: 700px;
+                left: 450px;
+                color: white;
+                font-size: 15px;
+                
+            }
+            .money td {
+                padding: 15px;
+            }
+
+            .coin{
+                height: 30px;
+                width: 30px;
+                cursor: pointer;
+            }
+            
+            ul {
+                position: relative;
+                top: 200px;
+                
+            }
+
+            #admin-hidden {
+                transition: ease 0.6s;
+                opacity: 1;
+                visibility: visible;
+                display: block;
+            }
+
+            .hiding-button + #admin-hidden {
+                transition: ease 0.6s;
+                opacity: 1;
+                visibility: visible;
+                display: block;
+            }
+
+            .hiding-button:checked + #admin-hidden {
+                transition: ease 0.6s;
+                opacity: 0;
+                visibility: hidden;
+                
+            }
+            
+        </style>
 
         <div class="money">
-            <!-- Ryan work here now-->
+            
             <table>
                 <tr>
-                    <td>$10</td>
-                    <td>$5</td>
+                    <td><img src="10.jpg" class="note"/></td>
+                    <td><img src="5.jpg" class="note"/></td>
                 </tr>
                 <tr>
-                    <td>$2</td>
-                    <td>$1</td>
+                    <td><img src="2.png" class="coin" /></td>
+                    <td><img src="1.png" class="coin" /></td>
                 </tr>
                 <tr>
-                    <td>50c</td>
-                    <td>20c</td>
+                    <td><img src="50c.png" class="coin" /></td>
+                    <td><img src="20c.png" class="coin" /></td>
                 </tr>
                 <tr>
-                    <td>10c</td>
-                    <td>5c</td>
+                    <td><img src="10c.png" class="coin" /></td>
+                    <td><img src="5c.png" class="coin" /></td>
                 </tr>
             </table>
         </div>
         
         <div class="machine-body" style="width:631px;height:809px;background-image:url(machine.png)">
-            <div id="item-number-enter">
+            <p>Keypad</p>
                 <table border="1">
                     <tr>
                         <td><button onclick = "press_button_handle('1');">1</button></td>
@@ -58,8 +115,8 @@
 
 
                 </table>
-                <p>Keypad</p>
-            </div>
+                
+            
             <div class="machine-items">
                 <ul>
                     <li>
@@ -89,35 +146,11 @@
 
                 </ul>
             </div>
-            <div id="item-number-enter">
-
-                <table border="1">
-                    <tr>
-                        <td><button onclick="javascript:press_button_handle('1');">1</button></td>
-                        <td><button onclick="javascript:press_button_handle('2');">2</button></td>
-                        <td><button onclick="javascript:press_button_handle('3');">3</button></td>
-                    </tr>
-                    <tr>
-                        <td><button onclick="javascript:press_button_handle('4');">4</button></td>
-                        <td><button onclick="javascript:press_button_handle('5');">5</button></td>
-                        <td><button onclick="javascript:press_button_handle('6');">6</button></td>
-                    </tr>
-                    <tr>
-                        <td><button onclick="javascript:press_button_handle('7');">7</button></td>
-                        <td><button onclick="javascript:press_button_handle('8');">8</button></td>
-                        <td><button onclick="javascript:press_button_handle('9');">9</button></td>
-                    </tr>
-                    <tr>
-                        <td><button onclick="javascript:press_button_handle('#');">&larr;</button></td>
-                        <td><button onclick="javascript:press_button_handle('0');">0</button></td>
-                        <td><button onclick="javascript:press_button_handle('*');">#</button></td>
-                    </tr>
-                </table>
-                <span id="codeDisplay">[placeholder]</span>
-            </div>
+            
 
         </div>
-
+        <p>Check the box to hide:</p>
+        <input type="checkbox"  class="hiding-button"/>
         <div id="admin-hidden">
             <h2>Hidden Admin Section</h2>
 
